@@ -1,0 +1,147 @@
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b12">
+<title>GODLIKE NETWORK — Minecraft Server</title>
+<style>
+:root{--bg:#090b12;--panel:#121622;--panel2:#191f2d;--gold:#f4c45e;--muted:#9ca6b8;--line:#293144}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 50% -10%,#273047 0,#090b12 42%);color:#f5f7fb;font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}
+header{position:sticky;top:0;z-index:10;background:rgba(9,11,18,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1120px;margin:auto;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{font-weight:900;letter-spacing:1.5px;color:var(--gold);font-size:20px}
+nav{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}
+nav a{font-size:14px;color:#c7cfdd}
+nav a:hover{color:var(--gold)}
+.hero{max-width:1120px;margin:auto;padding:88px 22px 70px;text-align:center}
+.badge{display:inline-block;padding:8px 13px;border:1px solid #6d572b;border-radius:30px;color:var(--gold);font-size:12px;letter-spacing:2px}
+h1{font-size:clamp(38px,8vw,76px);line-height:1.02;margin:22px 0 14px;letter-spacing:2px}
+h1 span{color:var(--gold);text-shadow:0 0 28px #e6ae4b55}
+.lead{max-width:650px;margin:0 auto;color:var(--muted);font-size:17px;line-height:1.7}
+.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.btn{border:0;border-radius:12px;padding:14px 20px;font-weight:800;cursor:pointer;background:var(--gold);color:#17120a}
+.btn.secondary{background:#171d2a;color:#f5f7fb;border:1px solid var(--line)}
+.serverip{margin:24px auto 0;padding:13px 18px;display:inline-flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;background:#101521;color:#dce3ee}
+.serverip code{color:var(--gold);font-size:15px}
+section{max-width:1120px;margin:auto;padding:55px 22px}
+.section-title{text-align:center;margin-bottom:28px}
+.section-title h2{font-size:32px;margin:0 0 9px}
+.section-title p{color:var(--muted);margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:linear-gradient(145deg,#171e2c,#101520);border:1px solid var(--line);border-radius:17px;padding:22px;box-shadow:0 12px 30px #0002}
+.card h3{margin:0 0 9px;font-size:19px}
+.card p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+.rank{position:relative;overflow:hidden}
+.rank:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-45px;top:-55px;background:currentColor;opacity:.08}
+.rank-name{font-size:22px;font-weight:900;margin-bottom:8px}
+.rank small{color:var(--muted)}
+.gold{color:#ffd45c}.brown{color:#a87545}.purple{color:#bd78ff}.red{color:#ff626c}.green{color:#63df83}.blue{color:#5bbdff}.orange{color:#ff9c43}.white{color:#f4f6ff}.dark{color:#a9afbd}
+.tag{display:inline-block;margin-top:14px;padding:6px 10px;border-radius:20px;background:#252d3d;color:#d8dfeb;font-size:12px}
+.earning .icon{font-size:30px;margin-bottom:13px}
+.note{margin-top:18px;text-align:center;color:#aeb8c8;font-size:13px}
+.pvp{border-color:#733d49;background:linear-gradient(145deg,#291720,#15131c)}
+.pvp .tag{background:#4a202d;color:#ffb4bd}
+footer{border-top:1px solid var(--line);padding:28px 20px;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:650px){.nav{align-items:flex-start;flex-direction:column}nav{justify-content:flex-start;gap:13px}.hero{padding-top:62px}section{padding-top:42px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="logo" href="#home">✦ GODLIKE NETWORK</a>
+    <nav>
+      <a href="#ranks">Ранги</a><a href="#earn">Заработок</a><a href="#pvp">PvP</a><a href="#cases">Кейсы</a><a href="#info">Информация</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home">
+  <div class="hero">
+    <div class="badge">MINECRAFT SERVER • GODLIKE NETWORK</div>
+    <h1>ТВОЯ ИГРА.<br><span>ТВОИ ПРАВИЛА.</span></h1>
+    <p class="lead">Добро пожаловать на GODLIKE NETWORK — развивайся, зарабатывай игровую валюту, открывай новые возможности и соревнуйся с другими игроками.</p>
+    <div class="actions">
+      <a class="btn" href="#ranks">Посмотреть ранги</a>
+      <a class="btn secondary" href="#earn">Как заработать</a>
+    </div>
+    <div class="serverip"><span>IP сервера:</span><code id="server-ip">ВСТАВЬТЕ_IP_СЕРВЕРА</code><button class="btn" style="padding:8px 12px" onclick="copyIP()">Копировать</button></div>
+  </div>
+
+  <section id="ranks">
+    <div class="section-title"><h2>ДОНАТ-РАНГИ</h2><p>Постоянные ранги GODLIKE NETWORK</p></div>
+    <div class="grid">
+      <article class="card rank"><div class="rank-name gold">✦ ЯРО</div><p>Высший ранг сети.</p><span class="tag">Золотой</span></article>
+      <article class="card rank"><div class="rank-name brown">✦ ЛОШАДЬ</div><p>Особый ранг сервера.</p><span class="tag">Коричневый</span></article>
+      <article class="card rank"><div class="rank-name purple">✦ ИСУШИТЕЛЬ</div><p>Особый ранг сервера.</p><span class="tag">Фиолетовый</span></article>
+      <article class="card rank"><div class="rank-name red">✦ АДА</div><p>Особый ранг сервера.</p><span class="tag">Красный</span></article>
+      <article class="card rank"><div class="rank-name green">✦ ХАЛК</div><p>Особый ранг сервера.</p><span class="tag">Зелёный</span></article>
+      <article class="card rank"><div class="rank-name blue">✦ ВОДА</div><p>Особый ранг сервера.</p><span class="tag">Голубой</span></article>
+      <article class="card rank"><div class="rank-name orange">✦ ОГОНЬ</div><p>Особый ранг сервера.</p><span class="tag">Оранжевый</span></article>
+      <article class="card rank"><div class="rank-name white">✦ ВОЗДУХ</div><p>Особый ранг сервера.</p><span class="tag">Белый</span></article>
+      <article class="card rank"><div class="rank-name dark">✦ ЗЕМЛЯ</div><p>Особый ранг сервера.</p><span class="tag">Тёмный</span></article>
+    </div>
+    <p class="note">Ранги здесь показаны как макет. Покупка и выдача рангов пока не подключены.</p>
+  </section>
+
+  <section id="earn">
+    <div class="section-title"><h2>КАК ЗАРАБОТАТЬ</h2><p>Игровые способы получить валюту — без заработка за PvP.</p></div>
+    <div class="grid">
+      <article class="card earning"><div class="icon">⛏️</div><h3>Шахта</h3><p>Добывай руду и полезные ресурсы, затем продавай их за игровую валюту.</p></article>
+      <article class="card earning"><div class="icon">🎣</div><h3>Рыбалка</h3><p>Лови рыбу и редкие находки. Более ценные уловы могут стоить дороже.</p></article>
+      <article class="card earning"><div class="icon">🔁</div><h3>Перепродажа вещей</h3><p>Покупай предметы у игроков или на рынке и продавай их по выгодной цене.</p></article>
+      <article class="card earning"><div class="icon">🌾</div><h3>Ферма</h3><p>Выращивай урожай и продавай собранные ресурсы.</p></article>
+      <article class="card earning"><div class="icon">💎</div><h3>Дорогие ресурсы</h3><p>Ищи редкие и ценные предметы. Это более сложный, но потенциально прибыльный способ.</p></article>
+      <article class="card earning"><div class="icon">📦</div><h3>Заказы игроков</h3><p>Выполняй крупные заказы на ресурсы и предметы за заранее согласованную плату.</p></article>
+    </div>
+    <p class="note">PvP не приносит деньги и не является способом заработка на сервере.</p>
+  </section>
+
+  <section id="pvp">
+    <div class="section-title"><h2>PvP-АРЕНА</h2><p>Отдельная зона для честных сражений.</p></div>
+    <div class="card pvp">
+      <h3>⚔️ Сражайся ради победы</h3>
+      <p>На PvP-арене игроки смогут сражаться друг с другом. За участие или победу деньги не начисляются.</p>
+      <span class="tag">Без денежных наград за PvP</span>
+    </div>
+  </section>
+
+  <section id="cases">
+    <div class="section-title"><h2>КЕЙСЫ</h2><p>Отдельный раздел с наградами.</p></div>
+    <div class="card">
+      <h3>🎁 Скоро появятся кейсы</h3>
+      <p>Здесь будет описание кейсов и наград. Вероятности выпадения будут показаны открыто. Пока открытие кейсов и выдача предметов не подключены.</p>
+    </div>
+  </section>
+
+  <section id="info">
+    <div class="section-title"><h2>ИНФОРМАЦИЯ</h2><p>Важные разделы сервера</p></div>
+    <div class="grid">
+      <article class="card"><h3>📜 Правила</h3><p>Правила поведения и игры на GODLIKE NETWORK будут добавлены перед запуском.</p></article>
+      <article class="card"><h3>🏆 Топ игроков</h3><p>Таблица лидеров появится после подключения статистики сервера.</p></article>
+      <article class="card"><h3>🛟 Поддержка</h3><p>Контакты поддержки будут добавлены после создания каналов связи.</p></article>
+    </div>
+  </section>
+</main>
+<footer>© GODLIKE NETWORK. Неофициальный Minecraft-сервер. Все игровые функции и покупки требуют отдельной настройки.</footer>
+<script>
+function copyIP(){
+  const ip=document.getElementById('server-ip').textContent;
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(ip).then(()=>alert('IP скопирован!')).catch(()=>alert('Пока не удалось скопировать IP.'));
+  }else{
+    alert('Замените ВСТАВЬТЕ_IP_СЕРВЕРА на настоящий IP сервера.');
+  }
+}
+</script>
+</body>
+</html>'''
+
+path = Path("/mnt/data/godlike-network-new.html")
+path.write_text(html, encoding="utf-8")
+print(f"Создан файл: {path} ({len(html)} символов)")
