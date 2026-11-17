@@ -1,63 +1,779 @@
-<nav>
-    <a href="#home">Главная</a>
-    <a href="#donate">Донат</a>
-    <a href="#cases">Кейсы</a>
-    <a href="#pvp">PvP</a>
-    <a href="#players">Игроки</a>
-</nav><div class="grid">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="card">
-        <h3>VIP</h3>
-        <p>Начальная привилегия.</p>
-        <p>Цена скоро появится</p>
+<title>GODLIKE NETWORK — Minecraft Server</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080711;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+:root {
+    --purple: #a855f7;
+    --light: #c084fc;
+    --dark: #100d20;
+    --card: #171329;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 8, 20, .95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #382452;
+}
+
+.navbar {
+    max-width: 1250px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    color: var(--light);
+    text-shadow: 0 0 20px var(--purple);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+nav a {
+    color: #ddd;
+    text-decoration: none;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--light);
+}
+
+.hero {
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    background:
+        radial-gradient(ellipse at center,
+        #41166b 0%,
+        #17102b 35%,
+        #080711 75%);
+}
+
+.hero-label {
+    padding: 10px 20px;
+    border: 1px solid #a855f7;
+    border-radius: 30px;
+    color: var(--light);
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 8vw, 90px);
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 0 35px #9333ea;
+}
+
+.hero h1 span {
+    color: var(--light);
+}
+
+.hero p {
+    color: #c4b5d0;
+    font-size: 19px;
+    margin-top: 20px;
+    max-width: 650px;
+    line-height: 1.7;
+}
+
+.button {
+    display: inline-block;
+    background: linear-gradient(135deg,
+        #9333ea, #6b21a8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    text-decoration: none;
+    margin-top: 25px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px #9333ea;
+}
+
+section {
+    padding: 85px 7%;
+    max-width: 1450px;
+    margin: auto;
+}
+
+.title {
+    text-align: center;
+    font-size: clamp(28px, 5vw, 42px);
+    color: var(--light);
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #9990aa;
+    margin-bottom: 45px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: linear-gradient(145deg,
+        #1b1530, #100d20);
+    border: 1px solid #382452;
+    padding: 28px;
+    border-radius: 18px;
+    text-align: center;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: var(--purple);
+    box-shadow: 0 0 25px #9333ea33;
+}
+
+.card h3 {
+    color: var(--light);
+    font-size: 23px;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #b8b0c9;
+    line-height: 1.7;
+}
+
+.price {
+    color: white !important;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.card .button {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.server-box {
+    max-width: 750px;
+    margin: auto;
+    background: var(--card);
+    border: 1px solid #63349a;
+    border-radius: 22px;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 0 35px #9333ea22;
+}
+
+.server-box h3 {
+    font-size: 28px;
+    color: var(--light);
+}
+
+.server-ip {
+    margin: 25px 0;
+    padding: 18px;
+    background: #090713;
+    border: 1px solid #63349a;
+    border-radius: 12px;
+    color: var(--light);
+    font-size: 20px;
+    overflow-wrap: anywhere;
+}
+
+.status {
+    color: #aaa;
+    margin-top: 15px;
+}
+
+.feature {
+    padding: 30px;
+    background: #151124;
+    border-radius: 15px;
+    border: 1px solid #302044;
+}
+
+.feature h3 {
+    color: var(--light);
+    margin-bottom: 12px;
+}
+
+.feature p {
+    color: #aaa;
+    line-height: 1.7;
+}
+
+.top-list {
+    max-width: 750px;
+    margin: auto;
+}
+
+.top-player {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 12px;
+    background: var(--card);
+    border: 1px solid #382452;
+    border-radius: 12px;
+    color: #ddd;
+}
+
+.top-player span:first-child {
+    color: var(--light);
+}
+
+.contact {
+    text-align: center;
+    background: linear-gradient(135deg,
+        #24123b, #100d20);
+    border: 1px solid #63349a;
+    border-radius: 20px;
+    padding: 45px 20px;
+}
+
+.contact p {
+    color: #bbb;
+    margin-top: 15px;
+}
+
+footer {
+    background: #0d0a17;
+    border-top: 1px solid #302044;
+    padding: 40px 20px;
+    text-align: center;
+    color: #8e829f;
+    line-height: 2;
+}
+
+footer strong {
+    color: var(--light);
+}
+
+@media(max-width: 750px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .hero {
+        min-height: 550px;
+    }
+
+    section {
+        padding: 60px 5%;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 15px #9333ea;
+    }
+    50% {
+        text-shadow: 0 0 40px #c084fc;
+    }
+}
+
+.hero h1 {
+    animation: glow 3s infinite;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="navbar">
+
+        <div class="logo">
+            GODLIKE NETWORK
+        </div>
+
+        <nav>
+            <a href="#home">Главная</a>
+            <a href="#about">О сервере</a>
+            <a href="#donate">Донат</a>
+            <a href="#cases">Кейсы</a>
+            <a href="#pvp">PvP</a>
+            <a href="#top">Топ</a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+<!-- ГЛАВНАЯ -->
+
+<section class="hero" id="home">
+
+    <div class="hero-label">
+        MINECRAFT NETWORK
     </div>
 
-    <div class="card">
-        <h3>PREMIUM</h3>
-        <p>Дополнительные возможности.</p>
-        <p>Цена скоро появится</p>
+    <h1>
+        GODLIKE <span>NETWORK</span>
+    </h1>
+
+    <p>
+        Добро пожаловать в GODLIKE NETWORK!
+        Создавай свою историю, сражайся,
+        развивайся и стань настоящей легендой.
+    </p>
+
+    <a href="#server" class="button">
+        ПОДКЛЮЧИТЬСЯ
+    </a>
+
+</section>
+
+
+<!-- О СЕРВЕРЕ -->
+
+<section id="about">
+
+    <h2 class="title">О НАШЕМ СЕРВЕРЕ</h2>
+
+    <p class="subtitle">
+        Здесь каждый игрок может стать легендой.
+    </p>
+
+    <div class="grid">
+
+        <div class="feature">
+            <h3>⚔️ PvP</h3>
+            <p>
+                Сражайся с другими игроками,
+                проверяй свои навыки и побеждай.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h3>💎 Экономика</h3>
+            <p>
+                Зарабатывай игровую валюту,
+                торгуй и развивайся.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h3>🏰 Приваты</h3>
+            <p>
+                Создавай собственные территории
+                и защищай свои постройки.
+            </p>
+        </div>
+
+        <div class="feature">
+            <h3>👑 Кланы</h3>
+            <p>
+                Создавай команды, приглашай друзей
+                и соревнуйся с другими кланами.
+            </p>
+        </div>
+
     </div>
 
-    <div class="card">
-        <h3>ELITE</h3>
-        <p>Особый статус игрока.</p>
-        <p>Цена скоро появится</p>
+</section>
+
+
+<!-- ДОНАТ -->
+
+<section id="donate">
+
+    <h2 class="title">ДОНАТ-ПРИВИЛЕГИИ</h2>
+
+    <p class="subtitle">
+        Выбирай свой игровой статус.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>VIP</h3>
+            <p>Начальная привилегия.</p>
+            <p class="price">Цена скоро появится</p>
+            <button class="button" onclick="buy('VIP')">
+                Подробнее
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>PREMIUM</h3>
+            <p>Дополнительные возможности.</p>
+            <p class="price">Цена скоро появится</p>
+            <button class="button" onclick="buy('PREMIUM')">
+                Подробнее
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>ELITE</h3>
+            <p>Особый статус игрока.</p>
+            <p class="price">Цена скоро появится</p>
+            <button class="button" onclick="buy('ELITE')">
+                Подробнее
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>LEGEND</h3>
+            <p>Привилегия легенды.</p>
+            <p class="price">Цена скоро появится</p>
+            <button class="button" onclick="buy('LEGEND')">
+                Подробнее
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>HERO</h3>
+            <p>Особый игровой статус.</p>
+            <p class="price">Цена скоро появится</p>
+            <button class="button" onclick="buy('HERO')">
+                Подробнее
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>DRAGON</h3>
+            <p>Редкая привилегия.</p>
+            <p class="price">Цена скоро появится</p>
+            <button class="button" onclick="buy('DRAGON')">
+                Подробнее
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>IMPERATOR</h3>
+            <p>Высокий игровой статус.</p>
+            <p class="price">Цена скоро появится</p>
+            <button class="button" onclick="buy('IMPERATOR')">
+                Подробнее
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>OVERLORD</h3>
+            <p>Привилегия высшего уровня.</p>
+            <p class="price">Цена скоро появится</p>
+            <button class="button" onclick="buy('OVERLORD')">
+                Подробнее
+            </button>
+        </div>
+
+        <div class="card">
+            <h3>GODLIKE</h3>
+            <p>Главная привилегия сети.</p>
+            <p class="price">Цена скоро появится</p>
+            <button class="button" onclick="buy('GODLIKE')">
+                Подробнее
+            </button>
+        </div>
+
     </div>
 
-    <div class="card">
-        <h3>LEGEND</h3>
-        <p>Привилегия легенды.</p>
-        <p>Цена скоро появится</p>
+</section>
+
+
+<!-- МАГАЗИН -->
+
+<section id="shop">
+
+    <h2 class="title">МАГАЗИН</h2>
+
+    <p class="subtitle">
+        Магазин игровых товаров GODLIKE NETWORK.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>💎 Монеты</h3>
+            <p>Игровая валюта.</p>
+            <p class="price">Скоро</p>
+        </div>
+
+        <div class="card">
+            <h3>🔑 Ключи</h3>
+            <p>Ключи для открытия кейсов.</p>
+            <p class="price">Скоро</p>
+        </div>
+
+        <div class="card">
+            <h3>🎁 Наборы</h3>
+            <p>Специальные игровые наборы.</p>
+            <p class="price">Скоро</p>
+        </div>
+
     </div>
 
-    <div class="card">
-        <h3>HERO</h3>
-        <p>Особый игровой статус.</p>
-        <p>Цена скоро появится</p>
+</section>
+
+
+<!-- КЕЙСЫ -->
+
+<section id="cases">
+
+    <h2 class="title">КЕЙСЫ</h2>
+
+    <p class="subtitle">
+        Открывай кейсы и получай награды.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>🎁 Обычный кейс</h3>
+            <p>Начальный уровень наград.</p>
+            <p class="price">Скоро</p>
+        </div>
+
+        <div class="card">
+            <h3>💎 Элитный кейс</h3>
+            <p>Особые игровые награды.</p>
+            <p class="price">Скоро</p>
+        </div>
+
+        <div class="card">
+            <h3>👑 Легендарный кейс</h3>
+            <p>Самые редкие награды.</p>
+            <p class="price">Скоро</p>
+        </div>
+
     </div>
 
-    <div class="card">
-        <h3>DRAGON</h3>
-        <p>Редкая привилегия.</p>
-        <p>Цена скоро появится</p>
-    </div>
+</section>
+
+
+<!-- PVP -->
+
+<section id="pvp">
+
+    <h2 class="title">PVP ARENA</h2>
+
+    <p class="subtitle">
+        Докажи, что ты достоин звания чемпиона.
+    </p>
 
     <div class="card">
-        <h3>IMPERATOR</h3>
-        <p>Высокий статус.</p>
-        <p>Цена скоро появится</p>
+
+        <h3>⚔️ GODLIKE PVP</h3>
+
+        <p>
+            Сражения, соревнования и настоящие
+            испытания ждут тебя.
+        </p>
+
+        <a href="#server" class="button">
+            Играть
+        </a>
+
     </div>
 
-    <div class="card">
-        <h3>OVERLORD</h3>
-        <p>Привилегия высшего уровня.</p>
-        <p>Цена скоро появится</p>
+</section>
+
+
+<!-- ТОП ИГРОКОВ -->
+
+<section id="top">
+
+    <h2 class="title">ТОП ИГРОКОВ</h2>
+
+    <p class="subtitle">
+        Лучшие игроки GODLIKE NETWORK.
+    </p>
+
+    <div class="top-list">
+
+        <div class="top-player">
+            <span>🥇 1. Скоро появится</span>
+            <span>---</span>
+        </div>
+
+        <div class="top-player">
+            <span>🥈 2. Скоро появится</span>
+            <span>---</span>
+        </div>
+
+        <div class="top-player">
+            <span>🥉 3. Скоро появится</span>
+            <span>---</span>
+        </div>
+
+        <div class="top-player">
+            <span>4. Скоро появится</span>
+            <span>---</span>
+        </div>
+
+        <div class="top-player">
+            <span>5. Скоро появится</span>
+            <span>---</span>
+        </div>
+
     </div>
 
-    <div class="card">
-        <h3>GODLIKE</h3>
-        <p>Главная привилегия сервера.</p>
-        <p>Цена скоро появится</p>
+</section>
+
+
+<!-- СЕРВЕР -->
+
+<section id="server">
+
+    <h2 class="title">НАШ СЕРВЕР</h2>
+
+    <p class="subtitle">
+        Присоединяйся к GODLIKE NETWORK.
+    </p>
+
+    <div class="server-box">
+
+        <h3>GODLIKE NETWORK</h3>
+
+        <p class="server-ip" id="server-ip">
+            ВСТАВЬТЕ_IP_СЕРВЕРА
+        </p>
+
+        <button class="button" onclick="copyIP()">
+            📋 СКОПИРОВАТЬ IP
+        </button>
+
+        <p class="status">
+            Статус сервера будет подключён позже.
+        </p>
+
     </div>
 
-</div>
+</section>
+
+
+<!-- ПОДДЕРЖКА -->
+
+<section id="support">
+
+    <div class="contact">
+
+        <h2 class="title">ПОДДЕРЖКА</h2>
+
+        <p>
+            Возникли вопросы?
+            Скоро здесь появятся контакты
+            администрации GODLIKE NETWORK.
+        </p>
+
+        <a href="#home" class="button">
+            НА ГЛАВНУЮ
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <strong>GODLIKE NETWORK</strong>
+
+    <br>
+
+    Minecraft Server
+
+    <br>
+
+    © 2026 GODLIKE NETWORK.
+    Все права защищены.
+
+</footer>
+
+
+<script>
+
+function copyIP() {
+
+    const ip = document
+        .getElementById("server-ip")
+        .textContent
+        .trim();
+
+    if (ip === "ВСТАВЬТЕ_IP_СЕРВЕРА") {
+        alert("IP сервера пока не добавлен!");
+        return;
+    }
+
+    navigator.clipboard.writeText(ip)
+        .then(() => {
+            alert("IP успешно скопирован!");
+        })
+        .catch(() => {
+            alert("Не удалось скопировать IP.");
+        });
+
+}
+
+
+function buy(rank) {
+
+    alert(
+        "Вы выбрали привилегию " +
+        rank +
+        ".\n\nПокупка пока не подключена."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
